@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Student Enrolment Form</title>
+
+</head>
+
+<body>
+  <div class="cont">
+    <div class="f1">
+      <form action="">
+        <div>
+          <h1>Student register form</h1><br>
+        </div>
+        <div>
+          <label class="big" for="name">Name:</label><br>
+          <input class="round" type="text" name="name" placeholder="Enter Your Name" id="name" class="text-box">
+        </div><br>
+
+        <div>
+          <label class="big" for="">Email:</label><br>
+          <input class="round" type="email" name="email" placeholder="example@gmail.com" id="email" class="text-box">
+        </div><br>
+
+        <div>
+          <label class="big" for="">Address:</label><br>
+          <input class="round" type="text" name="Address" placeholder="type your address" id="address" class="text-box">
+        </div>
+        <br>
+
+        <div class="input-box">
+          <label for="">Image:</label><br>
+          <input type="file" name="image" id="image-input" class="image-box">
+        </div><br>
+
+        <div class="input-box">
+          <label for="">Age:</label>
+          <input type="number" name="age" placeholder="18+" id="age" class="text-box" min="18">
+        </div><br>
+
+
+        <div class="self">
+          <label for="">Gender:</label>
+          <input type="radio" name="gender" id="gender1" value="Male"><span>Male</span>
+          <input type="radio" name="gender" id="gender2" value="Female"><span>Female</span>
+          <input type="radio" name="gender" id="gender3" value="Other"><span>Other</span>
+        </div>
+
+        <div class="self">
+          <label for="">Skills:</label><br>
+          <label class="block">
+            <input type="checkbox" name="skill" id="skill" value="Java">Java</label>
+          <label class="block">
+            <input type="checkbox" name="skill" id="skill" value="Python">Python</label>
+          <label class="block">
+            <input type="checkbox" name="skill" id="skill" value="HTML">HTML</label>
+          <label class="block">
+            <input type="checkbox" name="skill" id="skill" value="JavaScript">JavaScript</label>
+          <label class="block">
+            <input type="checkbox" name="skill" id="skill" value="AI">AI</label>
+
+        </div>
+        <div class="input-box">
+          <input type="button" value="Register" class="button" id="btn" onclick="AddRow()">
+        </div>
+      </form>
+
+    </div>
+    <div class="f2">
+      <div class="box">
+        <div class="head">
+          <h2>Student Details</h2>
+        </div>
+        <div class="desc">
+          <img src="" alt="" id="display_img">
+          <h2> <span id="name1"></span></h2>
+          <p><span id="email1"></span></p>
+          <p><span id="age1"></span></p>
+          <p><span id="address1"></span></p>
+          <p><span id="previewgender"></span></p>
+          <p><span id="skillprint"></span></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    function AddRow() {
+      var data1 = document.getElementById("name").value;
+      var data2 = document.getElementById("email").value;
+      var data3 = document.getElementById("address").value;
+      var data4 = document.getElementById("age").value;
+
+
+      // print radio values
+
+      var radios = document.getElementsByName('gender');
+      for (var radio of radios) {
+        if (radio.checked) {
+          document.getElementById("previewgender").innerHTML = 'Gender: ' + radio.value;
+        }
+      }
+      // print checkbox value
+
+      var checks = document.getElementsByName('skill');
+      var str = '';
+      for (i = 0; i < 5; i++) {
+        if (checks[i].checked == true) {
+          str += checks[i].value + " ";
+        }
+      }
+      document.getElementById("skillprint").innerHTML = str;
+
+
+      // print image file
+      var [img] = document.getElementById("image-input").files;
+      if (img.value != '') {
+        display_img.src = URL.createObjectURL(img);
+      }
+      else {
+        alert("No image is Selected");
+      }
+
+      // print other values in form
+      document.getElementById("name1").innerHTML = 'Name: ' + data1;
+      document.getElementById("email1").innerHTML = 'Email: ' + data2;
+      document.getElementById("address1").innerHTML = 'Address: ' + data3;
+      document.getElementById("age1").innerHTML = 'Age: ' + data4;
+
+    }
+  </script>
+
+</body>
+
+</html>
